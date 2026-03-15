@@ -220,7 +220,7 @@ This page is designed for mobile — audience members scan the QR with their pho
 After votes are submitted the finalists page shows the final podium with combined scores.
 
 <img
-  src="/img/screenshots/finalists-podium.png"
+  src="/img/screenshots/finalists.png"
   alt="Finalists podium"
   style={{borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', maxWidth: '100%'}}
 />
