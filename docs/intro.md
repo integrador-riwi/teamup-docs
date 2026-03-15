@@ -2,46 +2,56 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+**TeamUp** is a full-stack SaaS platform designed to manage hackathons, capstone events, and coding competitions. It provides tools for event management, team formation, project evaluation, and live audience voting.
 
-## Getting Started
+## What does TeamUp do?
 
-Get started by **creating a new site**.
+- **Event Management** — Create and manage hackathons, capstones and workshops
+- **Team Formation** — Coders join teams, TLs manage and evaluate them
+- **Ranking & Evaluation** — Team leads score projects with rubrics
+- **Live Voting** — Audience votes via QR code in real time
+- **Finalists & Podium** — Automatically calculates winners combining scores and votes
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Who uses it?
 
-### What you'll need
+| Role | Description |
+|------|-------------|
+| `ADMIN` | Full platform access, manages events and users |
+| `STAFF` | Can manage events |
+| `TL_DEVELOPMENT` | Evaluates development projects |
+| `TL_SOFT_SKILLS` | Evaluates soft skills |
+| `TL_ENGLISH` | Evaluates English skills |
+| `CODER` | Joins teams and submits projects |
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## Tech Stack
 
-## Generate a new site
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Vanilla JS SPA (no framework) |
+| Backend | Node.js + Express |
+| Primary DB | PostgreSQL |
+| Secondary DB | MongoDB |
+| Real-time | Socket.IO |
+| Auth | JWT + GitHub OAuth |
+| File Upload | Cloudinary |
+| Frontend Deploy | Vercel |
+| Backend Deploy | Railway |
 
-Generate a new Docusaurus site using the **classic template**.
+## Repositories
 
-The classic template will automatically be added to your project after you run the command:
+| Repo | URL |
+|------|-----|
+| Frontend | https://github.com/integrador-riwi/front-end |
+| Backend | https://github.com/integrador-riwi/back-end |
+| Docs | https://github.com/integrador-riwi/teamup-docs |
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+## Team
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+| Name | Role |
+|------|------|
+| Daniela Quinto Rios | Frontend Developer |
+| Verónica Martínez | Frontend Developer & Documentation |
+| Sebastian Vargas | Backend Developer |
+| Diego Morales | Backend Developer & Documentation |
