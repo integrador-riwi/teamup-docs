@@ -88,7 +88,8 @@ Admins see all events separated into **In Progress** and **Past** sections.
   style={{borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', maxWidth: '100%'}}
 />
 
-Each card shows:
+
+#### Each card shows
 - Event type (Capstone, Hackathon, Workshop)
 - Start and end dates
 - GitHub organization if connected
@@ -106,7 +107,8 @@ Coders and Team Leaders see open events.
   style={{borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', maxWidth: '100%'}}
 />
 
-Each card shows:
+
+#### Each card shows
 - Event type (Capstone, Hackathon, Workshop)
 - Start and end dates
 - GitHub organization if connected
@@ -125,7 +127,8 @@ Team Leaders see all teams for the selected event. Each card shows project progr
   style={{borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', maxWidth: '100%'}}
 />
 
-Card status indicators:
+#### Card status indicators
+
 | Color | Meaning |
 |-------|---------|
 | Green dot | All deliverables submitted |
@@ -152,12 +155,12 @@ Shows all teams sorted by their evaluator score for the selected event.
   style={{borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', maxWidth: '100%'}}
 />
 
-Features:
+
+#### Features
 - Top performers displayed in a row
 - Each card shows the name, score and members of the Team
 - Each card shows detailed evaluation information by placing the pointer over it
 - Overall ranking section for the rest of the teams
-
 
 ---
 
@@ -171,7 +174,7 @@ Admins use this page to manage the full voting session lifecycle.
   style={{borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)', maxWidth: '100%'}}
 />
 
-The page has four sections:
+#### The page has four sections
 
 1. **Instructions** — step by step guide for running a voting session
 2. **QR Code** — generate, display and download the voting QR
@@ -204,7 +207,7 @@ Audience members scan the QR code and land on this page to vote for their favori
 This page is designed for mobile — audience members scan the QR with their phones.
 :::
 
-Key behaviors:
+#### Key behaviors
 - No authentication required
 - One vote per IP address
 - Once voted, all buttons are disabled
