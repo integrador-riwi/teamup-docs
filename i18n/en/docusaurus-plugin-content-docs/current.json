@@ -1,0 +1,34 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Architecture": {
+    "message": "Architecture",
+    "description": "The label for category 'Architecture' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Frontend": {
+    "message": "Frontend",
+    "description": "The label for category 'Frontend' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Backend": {
+    "message": "Backend",
+    "description": "The label for category 'Backend' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Authentication": {
+    "message": "Authentication",
+    "description": "The label for category 'Authentication' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Real-time": {
+    "message": "Real-time",
+    "description": "The label for category 'Real-time' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Deployment": {
+    "message": "Deployment",
+    "description": "The label for category 'Deployment' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Contributing": {
+    "message": "Contributing",
+    "description": "The label for category 'Contributing' in sidebar 'tutorialSidebar'"
+  }
+}

@@ -15,7 +15,15 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'es'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      es: {
+        label: 'Español',
+      },
+    },
   },
 
   presets: [
@@ -50,6 +58,10 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position:  'left',
             label:     'Documentation',
+          },
+          {
+            type:      'localeDropdown',
+            position:  'right',
           },
           {
             href:     'https://github.com/integrador-riwi',

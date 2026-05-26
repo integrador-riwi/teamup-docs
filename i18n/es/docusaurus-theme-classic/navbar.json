@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "TeamUp",
+    "description": "El título de la navbar"
+  },
+  "logo.alt": {
+    "message": "Logo de TeamUp",
+    "description": "El texto alternativo del logo de la navbar"
+  },
+  "item.label.Documentation": {
+    "message": "Documentación",
+    "description": "Elemento de la navbar con etiqueta Documentación"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Elemento de la navbar con etiqueta GitHub"
+  }
+}

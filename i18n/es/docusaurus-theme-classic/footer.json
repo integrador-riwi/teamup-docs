@@ -1,0 +1,30 @@
+{
+  "link.title.Docs": {
+    "message": "Documentación",
+    "description": "El título de la columna de enlaces del footer con título=Docs"
+  },
+  "link.title.Community": {
+    "message": "Comunidad",
+    "description": "El título de la columna de enlaces del footer con título=Community"
+  },
+  "link.item.label.Getting Started": {
+    "message": "Primeros pasos",
+    "description": "La etiqueta del enlace del footer con etiqueta=Getting Started"
+  },
+  "link.item.label.Architecture": {
+    "message": "Arquitectura",
+    "description": "La etiqueta del enlace del footer con etiqueta=Architecture"
+  },
+  "link.item.label.API Reference": {
+    "message": "Referencia de API",
+    "description": "La etiqueta del enlace del footer con etiqueta=API Reference"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "La etiqueta del enlace del footer con etiqueta=GitHub"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 TeamUp — Crudzaso · Riwi",
+    "description": "El copyright del footer"
+  }
+}
