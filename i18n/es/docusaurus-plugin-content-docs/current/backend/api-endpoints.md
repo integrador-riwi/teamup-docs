@@ -2,12 +2,11 @@
 sidebar_position: 1
 ---
 
-# Endpoints de la API
+# API Endpoints
 
 Base URL: `https://back-end-production-7f2c.up.railway.app/api`
 
-Todas las rutas protegidas requieren:
-
+All protected routes require:
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
@@ -16,141 +15,163 @@ Authorization: Bearer <JWT_TOKEN>
 
 ## Auth `/api/auth`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| POST | `/register` | ❌ | Registra un nuevo usuario |
-| POST | `/login` | ❌ | Inicia sesión y devuelve JWT |
-| POST | `/logout` | ❌ | Cierra sesión |
-| POST | `/refresh` | ❌ | Refresca el JWT |
-| GET | `/me` | ✅ | Obtiene el usuario actual |
-| PUT | `/password` | ✅ | Cambia la contraseña |
-| PUT | `/profile` | ✅ | Actualiza el perfil |
-| GET | `/github` | ✅ | Redirección OAuth de GitHub |
-| GET | `/github/url` | ✅ | Obtiene la URL de OAuth |
-| GET | `/github/callback` | ❌ | Callback de GitHub |
-| GET | `/github/status` | ✅ | Verifica la conexión a GitHub |
-| GET | `/github/orgs` | ✅ | Lista organizaciones de GitHub |
-| DELETE | `/github` | ✅ | Desvincula GitHub |
+| POST | `/register` | ❌ | Register new user |
+| POST | `/login` | ❌ | Login, returns JWT |
+| POST | `/logout` | ❌ | Logout |
+| POST | `/refresh` | ❌ | Refresh JWT token |
+| GET | `/me` | ✅ | Get current user |
+| PUT | `/password` | ✅ | Change password |
+| PUT | `/profile` | ✅ | Update profile |
+| GET | `/github` | ✅ | GitHub OAuth redirect |
+| GET | `/github/url` | ✅ | Get GitHub OAuth URL |
+| GET | `/github/callback` | ❌ | GitHub OAuth callback |
+| GET | `/github/status` | ✅ | Check GitHub connection |
+| GET | `/github/orgs` | ✅ | List GitHub organizations |
+| DELETE | `/github` | ✅ | Disconnect GitHub |
+
+---
 
 ## Events `/api/events`
 
-| Método | Endpoint | Auth | Rol | Descripción |
+| Method | Endpoint | Auth | Role | Description |
 |--------|----------|------|------|-------------|
-| GET | `/` | ✅ | ALL | Lista todos los eventos |
-| GET | `/upcoming` | ✅ | ALL | Eventos próximos |
-| GET | `/active` | ✅ | ALL | Eventos activos |
-| GET | `/past` | ✅ | ALL | Eventos pasados |
-| GET | `/stats` | ✅ | ADMIN | Estadísticas del evento |
-| GET | `/:id` | ✅ | ALL | Obtiene un evento por ID |
-| GET | `/:id/metrics` | ✅ | ADMIN | Métricas del evento |
-| GET | `/:id/rubrics` | ✅ | ALL | Rúbricas del evento |
-| POST | `/` | ✅ | ADMIN, STAFF | Crea un evento |
-| PUT | `/:id` | ✅ | ADMIN, STAFF | Actualiza un evento |
-| DELETE | `/:id` | ✅ | ADMIN | Elimina un evento |
+| GET | `/` | ✅ | ALL | List all events |
+| GET | `/upcoming` | ✅ | ALL | Upcoming events |
+| GET | `/active` | ✅ | ALL | Active events |
+| GET | `/past` | ✅ | ALL | Past events |
+| GET | `/stats` | ✅ | ADMIN | Event statistics |
+| GET | `/:id` | ✅ | ALL | Get event by ID |
+| GET | `/:id/metrics` | ✅ | ADMIN | Event metrics |
+| GET | `/:id/rubrics` | ✅ | ALL | Event rubrics |
+| POST | `/` | ✅ | ADMIN, STAFF | Create event |
+| PUT | `/:id` | ✅ | ADMIN, STAFF | Update event |
+| DELETE | `/:id` | ✅ | ADMIN | Delete event |
+
+---
 
 ## Teams `/api/teams`
 
-| Método | Endpoint | Auth | Rol | Descripción |
+| Method | Endpoint | Auth | Role | Description |
 |--------|----------|------|------|-------------|
-| GET | `/` | ✅ | ALL | Lista equipos |
-| GET | `/my-teams` | ✅ | ALL | Obtiene mis equipos |
-| GET | `/invitations` | ✅ | ALL | Obtiene mis invitaciones |
-| GET | `/search` | ✅ | ALL | Búsqueda semántica de proyectos |
-| GET | `/:id` | ✅ | ALL | Obtiene un equipo por ID |
-| GET | `/:id/members` | ✅ | ALL | Lista miembros del equipo |
-| POST | `/` | ✅ | ALL | Crea un equipo |
-| PUT | `/:id` | ✅ | ALL | Actualiza un equipo |
-| DELETE | `/:id` | ✅ | ADMIN | Elimina un equipo |
-| POST | `/:id/members` | ✅ | ALL | Agrega miembro al equipo |
-| DELETE | `/:id/leave` | ✅ | ALL | Abandona el equipo |
-| POST | `/:id/request-join` | ✅ | ALL | Solicita unirte al equipo |
+| GET | `/` | ✅ | ALL | List all teams |
+| GET | `/my-teams` | ✅ | ALL | Get my teams |
+| GET | `/invitations` | ✅ | ALL | Get my invitations |
+| GET | `/search` | ✅ | ALL | Semantic search projects |
+| GET | `/:id` | ✅ | ALL | Get team by ID |
+| GET | `/:id/members` | ✅ | ALL | Get team members |
+| POST | `/` | ✅ | ALL | Create team |
+| PUT | `/:id` | ✅ | ALL | Update team |
+| DELETE | `/:id` | ✅ | ADMIN | Delete team |
+| POST | `/:id/members` | ✅ | ALL | Add member to team |
+| DELETE | `/:id/leave` | ✅ | ALL | Leave team |
+| POST | `/:id/request-join` | ✅ | ALL | Request to join team |
+
+---
 
 ## Projects `/api/projects`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| GET | `/team/:id` | ✅ | Obtiene el proyecto del equipo |
-| GET | `/:id` | ✅ | Obtiene un proyecto por ID |
-| POST | `/` | ✅ | Crea un proyecto |
-| POST | `/team/:id/confirm` | ✅ | Confirma el proyecto del equipo |
-| PUT | `/:id` | ✅ | Actualiza el proyecto |
-| POST | `/:id/submit` | ✅ | Envía el proyecto para revisión |
+| GET | `/team/:id` | ✅ | Get project by team |
+| GET | `/:id` | ✅ | Get project by ID |
+| POST | `/` | ✅ | Create project |
+| POST | `/team/:id/confirm` | ✅ | Confirm team project |
+| PUT | `/:id` | ✅ | Update project |
+| POST | `/:id/submit` | ✅ | Submit project for review |
+
+---
 
 ## Users `/api/users`
 
-| Método | Endpoint | Auth | Rol | Descripción |
+| Method | Endpoint | Auth | Role | Description |
 |--------|----------|------|------|-------------|
-| GET | `/me` | ✅ | ALL | Obtiene el perfil actual |
-| GET | `/available` | ✅ | CODER, TL_*, ADMIN | Lista usuarios disponibles |
-| GET | `/stats` | ✅ | ADMIN | Estadísticas de usuarios |
-| GET | `/` | ✅ | ADMIN | Lista todos los usuarios |
-| GET | `/:id` | ✅ | ADMIN | Obtiene usuario por ID |
-| POST | `/` | ✅ | ADMIN | Crea usuario |
-| PUT | `/:id` | ✅ | ADMIN | Actualiza usuario |
-| PUT | `/:id/password` | ✅ | ADMIN | Cambia contraseña de usuario |
-| PUT | `/:id/status` | ✅ | ADMIN | Activa o desactiva usuario |
+| GET | `/me` | ✅ | ALL | Get current user profile |
+| GET | `/available` | ✅ | CODER, TL_*, ADMIN | Available users list |
+| GET | `/stats` | ✅ | ADMIN | User statistics |
+| GET | `/` | ✅ | ADMIN | List all users |
+| GET | `/:id` | ✅ | ADMIN | Get user by ID |
+| POST | `/` | ✅ | ADMIN | Create user |
+| PUT | `/:id` | ✅ | ADMIN | Update user |
+| PUT | `/:id/password` | ✅ | ADMIN | Update user password |
+| PUT | `/:id/status` | ✅ | ADMIN | Toggle user active status |
+
+---
 
 ## Rankings `/api/ranking`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| GET | `/` | ✅ | Obtiene el ranking del evento ordenado por puntaje |
+| GET | `/` | ✅ | Get event ranking sorted by score |
+
+---
 
 ## Finalists `/api/finalists`
 
-| Método | Endpoint | Auth | Rol | Descripción |
+| Method | Endpoint | Auth | Role | Description |
 |--------|----------|------|------|-------------|
-| GET | `/events/:eventId` | ✅ | ALL | Obtiene los finalistas del evento |
-| POST | `/events/:eventId/calculate` | ✅ | ADMIN | Calcula ganadores |
-| POST | `/events/:eventId/auto-select` | ✅ | ADMIN | Selección automática de finalistas |
-| POST | `/events/:eventId` | ✅ | ADMIN | Define finalistas manualmente |
+| GET | `/events/:eventId` | ✅ | ALL | Get finalists for event |
+| POST | `/events/:eventId/calculate` | ✅ | ADMIN | Calculate winners (80% score + 20% votes) |
+| POST | `/events/:eventId/auto-select` | ✅ | ADMIN | Auto-select finalists by score |
+| POST | `/events/:eventId` | ✅ | ADMIN | Manually set finalists |
 
-:::info Fórmula de puntaje
-El cálculo final usa:
-**Puntaje final = (Puntaje del evaluador × 0.8) + (Votos normalizados × 0.2)**
+:::info Score Formula
+The finalist calculation uses:
+**Final Score = (Evaluator Score × 0.8) + (Normalized Votes × 0.2)**
 :::
+
+---
 
 ## QR Votes `/api/qr-votes`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| POST | `/` | ✅ | Crea una sesión de votación QR |
-| GET | `/event/:id` | ✅ | Obtiene sesiones QR del evento |
-| GET | `/event/:eventId/results` | ✅ | Obtiene resultados por proyecto |
-| PATCH | `/:id/toggle` | ✅ | Activa o desactiva QR |
-| GET | `/vote/:eventId/projects` | ❌ | Obtiene proyectos para votación pública |
-| POST | `/vote` | ❌ | Registra un voto público anónimo |
+| POST | `/` | ✅ | Create QR voting session |
+| GET | `/event/:id` | ✅ | Get QR sessions for event |
+| GET | `/event/:eventId/results` | ✅ | Get vote results per project |
+| PATCH | `/:id/toggle` | ✅ | Activate or deactivate QR |
+| GET | `/vote/:eventId/projects` | ❌ | Get projects for public voting page |
+| POST | `/vote` | ❌ | Register a public vote (anonymous) |
 
-:::warning Endpoints públicos
-`/vote/:eventId/projects` y `/vote` no requieren autenticación y son usados por la página pública de votación.
+:::warning Public Endpoints
+`/vote/:eventId/projects` and `/vote` do not require authentication — they are accessed from the public QR voting page by anonymous audience members.
 :::
+
+---
 
 ## Evaluations `/api/evaluations`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| GET | `/rubrics/:eventId` | ✅ | Obtiene rúbricas del evento |
-| GET | `/project/:projectId/my` | ✅ | Obtiene mis evaluaciones |
-| POST | `/project/:projectId` | ✅ | Envía evaluaciones |
-| POST | `/project/:projectId/calculate` | ✅ | Calcula grados del proyecto |
+| GET | `/rubrics/:eventId` | ✅ | Get rubrics for event |
+| GET | `/project/:projectId/my` | ✅ | Get my evaluations for a project |
+| POST | `/project/:projectId` | ✅ | Submit evaluations |
+| POST | `/project/:projectId/calculate` | ✅ | Calculate project grades |
+
+---
 
 ## Comments `/api/comments`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| POST | `/` | ✅ | Crea un comentario en un proyecto |
-| DELETE | `/:id` | ✅ | Elimina un comentario |
+| POST | `/` | ✅ | Create comment on a project |
+| DELETE | `/:id` | ✅ | Delete comment |
+
+---
 
 ## Uploads `/api/uploads`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| POST | `/signature` | ✅ | Obtiene la firma de Cloudinary |
-| POST | `/confirm` | ✅ | Confirma la subida tras Cloudinary |
+| POST | `/signature` | ✅ | Get Cloudinary upload signature |
+| POST | `/confirm` | ✅ | Confirm upload after Cloudinary |
+
+---
 
 ## Emails `/api/emails`
 
-| Método | Endpoint | Auth | Descripción |
+| Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| POST | `/send` | ✅ | Envía un correo a un usuario |
-| POST | `/broadcast` | ✅ | Envía un correo a varios usuarios |
+| POST | `/send` | ✅ | Send email to a specific user |
+| POST | `/broadcast` | ✅ | Send email to multiple users |

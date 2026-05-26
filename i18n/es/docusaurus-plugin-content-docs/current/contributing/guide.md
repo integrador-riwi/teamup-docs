@@ -2,79 +2,75 @@
 sidebar_position: 1
 ---
 
-# Guía de contribución
+# Contributing Guide
 
-## Flujo de Git
+## Git Workflow
 
-TeamUp usa un **feature branch workflow**:
-
+TeamUp uses a **feature branch workflow**:
 ```
-main          ← producción
-develop       ← rama de integración
-feature/xxx   ← nueva funcionalidad
-fix/xxx       ← correcciones
+main          ← production
+develop       ← integration branch
+feature/xxx   ← your feature
+fix/xxx       ← bug fixes
 ```
 
-### Pasos
-
+### Steps
 ```bash
-# 1. Crea una rama desde develop
+# 1. Create a branch from develop
 git checkout develop
 git pull origin develop
 git checkout -b feature/my-feature
 
-# 2. Haz tus cambios
-# 3. Haz commit con un mensaje claro
+# 2. Make your changes
+# 3. Commit with a clear message
 git commit -m "feat: add vote reset endpoint"
 
-# 4. Sube la rama y abre un PR hacia develop
+# 4. Push and open a PR to develop
 git push origin feature/my-feature
 ```
 
-## Convención de commits
+## Commit Convention
 
-Sigue **Conventional Commits**:
+Follow **Conventional Commits**:
 
-| Prefijo | Descripción |
-|---------|-------------|
-| `feat:` | Nueva funcionalidad |
-| `fix:` | Corrección |
-| `docs:` | Documentación |
-| `style:` | Formato / CSS |
-| `refactor:` | Refactorización |
-| `chore:` | Mantenimiento |
+| Prefix | Description |
+|--------|-------------|
+| `feat:` | New feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation |
+| `style:` | CSS/formatting |
+| `refactor:` | Code refactor |
+| `chore:` | Maintenance |
 
-## Estilo de código
+## Code Style
 
 ### Frontend
-- Sin framework — JavaScript vanilla
-- Una vista = un archivo en `src/views/`
-- Usa Bootstrap para el layout y CSS propio para componentes
-- Todos los iconos vienen de `src/utils/icons.js`
-- No uses estilos inline — usa clases CSS
+- No framework — Vanilla JS classes
+- One view = one file in `src/views/`
+- Use Bootstrap for layout, custom CSS for components
+- All icons from `src/utils/icons.js`
+- No inline styles — use CSS classes
 
 ### Backend
-- Patrón MVC — rutas → controladores → servicios → modelos
-- Todas las rutas deben tener middleware `authenticate`
-- Usa `hasRole()` para validaciones de rol
-- Devuelve JSON consistente: `{ success: true, data: {} }`
+- MVC pattern — routes → controllers → services → models
+- All routes must have `authenticate` middleware
+- Use `hasRole()` for role checks
+- Return consistent JSON: `{ success: true, data: {} }`
 
-## Agregar una nueva vista
-
+## Adding a New View
 ```
-1. Crea src/views/MyView.js
-2. Importa y registra en src/index.js
-3. Agrega permiso de ruta en ROUTE_PERMISSIONS
-4. Agrega breadcrumb en header-config.js
-5. Agrega link de navegación en navbar-config.js (si aplica)
+1. Create src/views/MyView.js
+2. Import and register in src/index.js
+3. Add route permission in ROUTE_PERMISSIONS
+4. Add breadcrumb in header-config.js
+5. Add nav link in navbar-config.js (if needed)
 ```
 
-## Agregar un nuevo endpoint
-
+## Adding a New API Endpoint
 ```
-1. Agrega la ruta en src/routes/my.routes.js
-2. Agrega el método del controlador en src/controllers/my.controller.js
-3. Agrega el método del servicio en src/services/my.service.js
-4. Registra la ruta en src/index.js
-5. Documenta en docs/backend/api-endpoints.md
+1. Add route in src/routes/my.routes.js
+2. Add controller method in src/controllers/my.controller.js
+3. Add service method in src/services/my.service.js
+4. Register route in src/index.js
+5. Document in docs/backend/api-endpoints.md
 ```

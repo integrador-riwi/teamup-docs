@@ -2,39 +2,37 @@
 sidebar_position: 1
 ---
 
-# Autenticación y autorización
+# Authentication & Authorization
 
-## JWT
+## JWT Authentication
 
-TeamUp usa **JWT (JSON Web Tokens)** para la gestión de sesiones.
+TeamUp uses **JWT (JSON Web Tokens)** for session management.
 
-### Flujo de login
-
+### Login Flow
 ```
 1. POST /api/auth/login  { email, password }
-2. El servidor devuelve { token, user }
-3. El frontend guarda el token en localStorage
-4. Todas las peticiones incluyen: Authorization: Bearer <token>
+2. Server returns { token, user }
+3. Frontend stores token in localStorage
+4. All subsequent requests include: Authorization: Bearer <token>
 ```
 
-### Almacenamiento del token
-
+### Token Storage
 ```javascript
-// Guardar
+// Store
 localStorage.setItem("token", data.token);
 
-// Leer
+// Read
 const token = localStorage.getItem("token");
 
-// Borrar
+// Clear
 localStorage.removeItem("token");
 ```
 
-### Rutas protegidas
+### Protected Routes
 
-Cada endpoint protegido usa el middleware `authenticate`:
-
+Every protected endpoint uses the `authenticate` middleware:
 ```javascript
+// middleware/auth.js
 export const authenticate = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Unauthorized" });
@@ -49,49 +47,53 @@ export const authenticate = (req, res, next) => {
 };
 ```
 
-## OAuth de GitHub
+---
 
-TeamUp soporta OAuth de GitHub para conectar una cuenta con el perfil del usuario.
+## GitHub OAuth
 
-### Flujo
+TeamUp supports GitHub OAuth for connecting a GitHub account to a user profile.
 
+### Flow
 ```
-1. GET /api/auth/github/url       → devuelve la URL de OAuth
-2. El usuario es redirigido a GitHub
-3. GitHub redirige a /api/auth/github/callback
-4. El backend intercambia el code por token
-5. El perfil de GitHub se vincula al usuario de TeamUp
-6. El frontend redirige con ?github=success&username=...
+1. GET /api/auth/github/url       → returns GitHub OAuth URL
+2. User redirected to GitHub
+3. GitHub redirects to /api/auth/github/callback
+4. Backend exchanges code for token
+5. GitHub profile linked to TeamUp user
+6. Frontend redirected with ?github=success&username=...
 ```
 
-### Manejo en el frontend
-
+### Frontend handling
 ```javascript
+// Get OAuth URL and redirect
 const url = await getGithubAuthUrl();
 window.location.href = url;
 
+// After redirect back — check params
 const params = new URLSearchParams(window.location.search);
 if (params.get("github") === "success") {
-  // mostrar mensaje de éxito
+  // show success message
 }
 ```
 
-## RBAC
+---
+
+## Role-Based Access Control (RBAC)
 
 ### Roles
 
-| Rol | Nivel | Descripción |
+| Role | Level | Description |
 |------|-------|-------------|
-| `ADMIN` | Máximo | Acceso completo |
-| `STAFF` | Alto | Gestión de eventos |
-| `TL_DEVELOPMENT` | Medio | Evalúa proyectos de desarrollo |
-| `TL_SOFT_SKILLS` | Medio | Evalúa habilidades blandas |
-| `TL_ENGLISH` | Medio | Evalúa inglés |
-| `CODER` | Básico | Se une a equipos y envía proyectos |
+| `ADMIN` | Highest | Full access |
+| `STAFF` | High | Event management |
+| `TL_DEVELOPMENT` | Medium | Evaluate dev projects |
+| `TL_SOFT_SKILLS` | Medium | Evaluate soft skills |
+| `TL_ENGLISH` | Medium | Evaluate English |
+| `CODER` | Basic | Join teams, submit projects |
 
-### Middleware RBAC
-
+### RBAC Middleware
 ```javascript
+// middleware/rbac.js
 export const hasRole = (...roles) => (req, res, next) => {
   if (!roles.includes(req.user?.role)) {
     return res.status(403).json({ error: "Forbidden" });

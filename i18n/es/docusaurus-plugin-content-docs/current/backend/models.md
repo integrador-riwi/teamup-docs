@@ -2,12 +2,11 @@
 sidebar_position: 3
 ---
 
-# Modelos de datos
+# Data Models
 
-TeamUp usa **PostgreSQL** como base de datos principal, con más de 20 tablas.
+TeamUp uses **PostgreSQL** as its primary database with 20+ tables.
 
-## Resumen del modelo relacional
-
+## Entity Relationship Overview
 ```
 users ──< team_coders >── teams ──< projects
   │                          │
@@ -19,171 +18,172 @@ users ──< team_coders >── teams ──< projects
   └── refresh_tokens
 ```
 
-## Tablas principales
+---
+
+## Core Tables
 
 ### `users`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_user` | integer | Clave primaria |
-| `name` | varchar | Nombre completo |
-| `email` | varchar | Correo único |
+| `id_user` | integer | Primary key |
+| `name` | varchar | Full name |
+| `email` | varchar | Unique email |
 | `role` | enum | ADMIN, STAFF, TL_DEVELOPMENT, TL_SOFT_SKILLS, TL_ENGLISH, CODER |
-| `clan` | varchar | Clan asignado |
-| `is_active` | boolean | Estado de la cuenta |
-| `encrypted_password` | text | Contraseña hasheada |
-| `github_id` | varchar | ID de GitHub OAuth |
-| `github_username` | varchar | Usuario de GitHub |
-| `github_avatar_url` | text | Avatar de GitHub |
-| `document_number` | varchar | Documento de identidad |
-| `document_type` | varchar | Tipo de documento |
+| `clan` | varchar | Cohort clan assignment |
+| `is_active` | boolean | Account status |
+| `encrypted_password` | text | Hashed password |
+| `github_id` | varchar | GitHub OAuth ID |
+| `github_username` | varchar | GitHub username |
+| `github_avatar_url` | text | GitHub profile picture |
+| `document_number` | varchar | National ID (unique) |
+| `document_type` | varchar | ID type |
 
 ### `events`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_event` | integer | Clave primaria |
-| `title` | varchar | Título del evento |
-| `description` | text | Descripción |
+| `id_event` | integer | Primary key |
+| `title` | varchar | Event title |
+| `description` | text | Event description |
 | `event_type` | varchar | CAPSTONE, HACKATHON, WORKSHOP |
-| `event_status` | varchar | Estado actual |
-| `cohort` | varchar | Cohorte objetivo |
-| `event_start_date` | timestamp | Fecha de inicio |
-| `final_delivery_date` | timestamp | Fecha límite de entrega |
-| `max_team_size` | integer | Máximo de miembros por equipo |
-| `github_org` | varchar | Organización de GitHub |
-| `target_clans` | array | Clanes permitidos |
+| `event_status` | varchar | Current status |
+| `cohort` | varchar | Target cohort |
+| `event_start_date` | timestamp | Start date |
+| `final_delivery_date` | timestamp | Submission deadline |
+| `max_team_size` | integer | Max members per team (default 5) |
+| `github_org` | varchar | GitHub organization name |
+| `target_clans` | array | Clans allowed to participate |
 | `created_by` | integer | FK → users.id_user |
 
 ### `teams`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_team` | integer | Clave primaria |
-| `name` | varchar | Nombre del equipo |
+| `id_team` | integer | Primary key |
+| `name` | varchar | Team name |
 | `id_event` | integer | FK → events.id_event |
-| `created_at` | timestamp | Fecha de creación |
+| `created_at` | timestamp | Creation date |
 
 ### `team_coders`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
 | `id_team` | integer | FK → teams.id_team |
 | `id_user` | integer | FK → users.id_user |
-| `team_role` | enum | Rol dentro del equipo |
+| `team_role` | enum | Member role within team |
 
 ### `projects`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_project` | integer | Clave primaria |
-| `name` | varchar | Nombre del proyecto |
-| `description` | text | Descripción |
+| `id_project` | integer | Primary key |
+| `name` | varchar | Project name |
+| `description` | text | Project description |
 | `team_id` | integer | FK → teams.id_team |
 | `id_event` | integer | FK → events.id_event |
-| `repo_url` | varchar | URL del repositorio |
-| `video_url` | varchar | URL del video |
-| `preview_photo_url` | varchar | URL de la imagen previa |
-| `deploy_url` | varchar | URL de despliegue |
-| `submitted_at` | timestamp | Fecha de entrega |
-| `project_final_grade` | double | Calificación final |
+| `repo_url` | varchar | GitHub repo URL |
+| `video_url` | varchar | Demo video URL |
+| `preview_photo_url` | varchar | Project thumbnail |
+| `deploy_url` | varchar | Live deployment URL |
+| `submitted_at` | timestamp | Submission timestamp (null = not submitted) |
+| `project_final_grade` | double | Calculated final grade |
 
-## Tablas de evaluación
+---
+
+## Evaluation Tables
 
 ### `rubrics`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_rubric` | integer | Clave primaria |
+| `id_rubric` | integer | Primary key |
 | `id_event` | integer | FK → events.id_event |
 | `area` | enum | TL_DEVELOPMENT, TL_SOFT_SKILLS, TL_ENGLISH |
-| `name` | varchar | Nombre del criterio |
-| `weight` | double | Peso en la nota (0-1) |
-| `active` | boolean | Si la rúbrica está activa |
+| `name` | varchar | Rubric criterion name |
+| `weight` | double | Weight in final score (0-1) |
+| `active` | boolean | Whether rubric is active |
 
 ### `grades`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_grade` | integer | Clave primaria |
+| `id_grade` | integer | Primary key |
 | `id_rubric` | integer | FK → rubrics.id_rubric |
-| `score` | double | Puntaje numérico |
-| `name` | varchar | Etiqueta de la calificación |
-| `description` | text | Descripción |
+| `score` | double | Numeric score |
+| `name` | varchar | Grade label |
+| `description` | text | Grade description |
 
 ### `evaluations`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_evaluation` | integer | Clave primaria |
+| `id_evaluation` | integer | Primary key |
 | `project_id` | integer | FK → projects.id_project |
 | `event_id` | integer | FK → events.id_event |
-| `evaluator_user_id` | integer | FK → users.id_user |
-| `evaluated_user_id` | integer | FK → users.id_user |
-| `area` | enum | Área de evaluación |
+| `evaluator_user_id` | integer | FK → users.id_user (TL) |
+| `evaluated_user_id` | integer | FK → users.id_user (Coder) |
+| `area` | enum | Evaluation area |
 | `id_grade` | integer | FK → grades.id_grade |
-| `feedback` | text | Comentario opcional |
+| `feedback` | text | Optional feedback text |
 
 ### `individual_area_results`
-Guarda puntuaciones calculadas por usuario y área.
+Stores calculated scores per user per evaluation area.
 
 ### `individual_project_results`
-Guarda las puntuaciones finales por proyecto y usuario.
+Stores final calculated project scores per user.
 
-## Tablas de votación
+---
+
+## Voting Tables
 
 ### `qr_votes`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id` | integer | Clave primaria |
+| `id` | integer | Primary key |
 | `id_event` | integer | FK → events.id_event |
-| `qr_code_url` | varchar | URL del QR |
-| `expires_at` | timestamp | Cierre de la votación |
-| `active` | boolean | Si la votación está activa |
-| `top_n` | integer | Número de finalistas |
+| `qr_code_url` | varchar | QR image URL |
+| `expires_at` | timestamp | When voting closes |
+| `active` | boolean | Whether voting is open |
+| `top_n` | integer | Number of finalists (default 3) |
 | `created_by` | integer | FK → users.id_user |
 
 ### `public_votes`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_vote` | integer | Clave primaria |
+| `id_vote` | integer | Primary key |
 | `qr_vote_id` | integer | FK → qr_votes.id |
 | `project_id` | integer | FK → projects.id_project |
-| `voter_ip` | varchar | IP del votante |
-| `voted_at` | timestamp | Fecha del voto |
+| `voter_ip` | varchar | Voter IP (prevents duplicate votes) |
+| `voted_at` | timestamp | Vote timestamp |
 
 ### `finalists`
-
-| Columna | Tipo | Descripción |
+| Column | Type | Description |
 |--------|------|-------------|
-| `id_finalist` | integer | Clave primaria |
+| `id_finalist` | integer | Primary key |
 | `id_project` | integer | FK → projects.id_project |
 | `event_id` | integer | FK → events.id_event |
-| `second_grade` | double | Puntaje del evaluador |
-| `votes_result` | double | Puntaje de votos normalizado |
-| `final_grade` | double | Puntaje final |
-| `votes_count` | integer | Votos recibidos |
+| `second_grade` | double | Evaluator score (80%) |
+| `votes_result` | double | Normalized vote score (20%) |
+| `final_grade` | double | Combined final score |
+| `votes_count` | integer | Total votes received |
 
-## Tablas de gestión de equipos
+---
+
+## Team Management Tables
 
 ### `team_invitations`
-Registra invitaciones enviadas a coders para unirse a un equipo. Estados: `PENDING`, `ACCEPTED`, `REJECTED`.
+Tracks invitations sent to coders to join a team. Status: `PENDING`, `ACCEPTED`, `REJECTED`.
 
 ### `team_join_requests`
-Registra solicitudes de ingreso a un equipo. Estados: `PENDING`, `ACCEPTED`, `REJECTED`.
+Tracks requests from coders to join a team. Status: `PENDING`, `ACCEPTED`, `REJECTED`.
 
 ### `deliverables`
-Guarda URLs de entregables del proyecto.
+Stores project deliverable URLs (presentation, repo, video, preview photo).
 
-## Tablas de autenticación
+---
+
+## Auth Tables
 
 ### `profiles`
-Perfil extendido del usuario con URL de GitHub, descripción y clan.
+Extended user profile with GitHub URL, description and clan.
 
 ### `refresh_tokens`
-Almacena refresh tokens con expiración, revocación e información de IP/user-agent.
+Stores JWT refresh tokens with expiry, revocation tracking and IP/user-agent logging.
 
 ### `notifications`
-Notificaciones internas con payload JSON y estado leído.
+In-app notifications with JSON data payload and read status.
+
+```

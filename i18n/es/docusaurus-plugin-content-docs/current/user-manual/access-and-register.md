@@ -1,160 +1,162 @@
-# 02 — Registro y Acceso
+# 02 — Registration and Access
 
-## 1. Registro de Coders
+## 1. Coder Registration
 
-El acceso a TeamUp comienza con la creación de una cuenta. La plataforma cuenta con una **página de registro exclusiva para coders**, donde se recopila la información necesaria para identificar al participante dentro de RIWI.
-![Imagen de la vista del registro](./screenshots/image.png)
+Access to TeamUp begins with creating an account. The platform has a **registration page exclusively for coders**, where the information needed to identify the participant within RIWI is collected.
 
-### 1.1 Datos Requeridos en el Registro
+![Registration view image](./screenshots/register.png)
 
-| Campo | Tipo | Descripción |
+### 1.1 Required registration fields
+
+| Field | Type | Description |
 |-------|------|-------------|
-| **Nombre completo** | Texto | Nombre y apellido del coder |
-| **Documento de identidad** | Número | Cédula o documento oficial del participante |
-| **Clan** | Selección | Clan de RIWI al que pertenece el coder |
-| **Correo electrónico** | Email | Se usará como identificador de inicio de sesión |
-| **Contraseña** | Password | Mínimo de caracteres requeridos; se usa para autenticación |
+| **Full name** | Text | Coder's first and last name |
+| **Identity document** | Number | Participant ID or official document |
+| **Clan** | Selection | RIWI clan the coder belongs to |
+| **Email address** | Email | Used as the login identifier |
+| **Password** | Password | Minimum character requirements; used for authentication |
 
-> **Nota:** El registro de coders es el único proceso de auto-registro disponible en la plataforma. Los roles `ADMIN`, `TL_DEVELOPMENT`, `TL_SOFT_SKILLS` y `TL_ENGLISH` son asignados directamente por el administrador del sistema.
+> **Note:** Coder registration is the only self-registration flow available on the platform. Roles `ADMIN`, `TL_DEVELOPMENT`, `TL_SOFT_SKILLS`, and `TL_ENGLISH` are assigned directly by the system administrator.
 
-### 1.2 Flujo de Registro
+### 1.2 Registration flow
 
 ```
-Página de Registro
+Registration Page
        │
        ▼
- Completar formulario
- (Nombre, Documento, Clan, Email, Contraseña)
+Complete form
+(Name, Document, Clan, Email, Password)
        │
        ▼
-  ¿Datos válidos?
+Are the fields valid?
    /          \
- SÍ            NO
-  │             │
-  ▼             ▼
-Cuenta        Mensajes de
-creada ✅     error por campo ❌
+ YES          NO
+  │            │
+  ▼            ▼
+Account     Error messages
+created    for invalid fields 
   │
   ▼
-Redirige al Login
-(o directamente al perfil para
- completar la vinculación de GitHub)
+Redirect to Login
 ```
 
 ---
 
-## 2. Vinculación de Cuenta de GitHub
+## 2. GitHub Account Linking
 
-Una vez creada la cuenta, el sistema solicitará al coder que **vincule su cuenta de GitHub** desde su perfil. Este paso es fundamental para la integración automática con los repositorios de los equipos.
+After creating the account,in the profile section, the user must link their GitHub account. This step is essential for the automatic integration with team repositories.
 
-### 2.1 ¿Por qué es necesario vincular GitHub?
+![Github Linking](./screenshots/gitHubLinking.png)
+### 2.1 Why linking GitHub is necessary
 
-Cuando un coder forma parte de un equipo en un evento, TeamUp lo agrega automáticamente como **colaborador** al repositorio de GitHub del equipo. Para poder hacer esto, la plataforma necesita conocer el nombre de usuario de GitHub del coder.
+When a coder joins a team for an event, TeamUp adds them automatically as a **collaborator** on the team's GitHub repository. To do that, the platform needs to know the coder's GitHub username and has permission to add them as a collaborator. 
 
-### 2.2 Flujo de Vinculación
+### 2.2 Linking flow
 
 ```
-Perfil del Usuario
+User Profile
        │
        ▼
-Sección "Vincular GitHub"
+GitHub Linking section
        │
        ▼
-Clic en "Conectar con GitHub"
+Click "Connect with GitHub"
        │
        ▼
-Redirección a GitHub OAuth
-(Autorización de permisos a TeamUp)
+Redirect to GitHub OAuth
+(Authorize TeamUp permissions)
        │
        ▼
-  ¿Autorizado?
+Is authorization granted?
    /          \
- SÍ            NO
-  │             │
-  ▼             ▼
-GitHub vinculado ✅    Vinculación cancelada
-                       (puede intentarlo de nuevo)
+ YES         NO
+  │            │
+  ▼            ▼
+GitHub linked    Linking canceled
+                    (can try again later)
 ```
 
-### 2.3 Estados de Vinculación de GitHub
+### 2.3 GitHub linking states
 
-| Estado | Indicador Visual | Implicación |
-|--------|-----------------|-------------|
-| **Vinculado** | ✅ Usuario de GitHub visible en perfil | Puede unirse a equipos y ser añadido como colaborador |
-| **No vinculado** | ⚠️ Advertencia en perfil | Puede unirse a eventos, pero no será añadido al repositorio automáticamente |
+| State | Visual indicator | Impact |
+|--------|------------------|--------|
+| **Linked** | GitHub username visible in profile | Can join teams and be added as collaborator |
+| **Not linked** | "Connect with GitHub" button is visible in profile | Can not join teams or create teams |
 
-> ⚠️ **Importante:** Se recomienda vincular GitHub **antes de unirse a un evento** para garantizar el acceso inmediato al repositorio del equipo.
+>  **Important:** It is very important to link GitHub **before joining an event** so the coder can access the team repository immediately.
 
 ---
 
-## 3. Inicio de Sesión
+## 3. Login
 
-El inicio de sesión es el punto de entrada común para **todos los roles** de la plataforma.
+Login is the common entry point for **all roles** on the platform.
 
-### 3.1 Datos Requeridos
+![Login Screen](./screenshots/login.png)
 
-| Campo | Descripción |
+### 3.1 Required fields
+
+| Field | Description |
 |-------|-------------|
-| **Correo electrónico** | El mismo registrado al crear la cuenta |
-| **Contraseña** | La contraseña definida durante el registro |
+| **Email address** | The same email used during registration |
+| **Password** | The password defined during registration |
 
-### 3.2 Flujo de Login
+### 3.2 Login flow
 
 ```
-Pantalla de Login
+Login Screen
        │
        ▼
-Ingresar email y contraseña
+Enter email and password
        │
        ▼
-   [ Iniciar Sesión ]
+   [ Sign In ]
        │
        ▼
- ¿Credenciales válidas?
+Are the credentials valid?
    /              \
- SÍ                NO
-  │                 │
-  ▼                 ▼
-Identificar rol   Mostrar mensaje:
-del usuario       "Correo o contraseña incorrectos"
+ YES               NO
+  │                  │
+  ▼                  ▼
+Identify user role   Show message:
+from the account    "Email or password is incorrect"
   │
-  ├── ADMIN        → Redirige a Panel de Eventos
-  ├── CODER        → Redirige a Página Principal
-  ├── TL_DEVELOPMENT → Redirige a Panel TL
-  ├── TL_SOFT_SKILLS → Redirige a Panel TL
-  └── TL_ENGLISH   → Redirige a Panel TL
+  ├── ADMIN        → Redirect to Events panel
+  ├── CODER        → Redirect to Home page
+  ├── TL_DEVELOPMENT → Redirect to TL panel
+  ├── TL_SOFT_SKILLS → Redirect to TL panel
+  └── TL_ENGLISH   → Redirect to TL panel
 ```
 
-### 3.3 Consideraciones de Seguridad
+### 3.3 Security considerations
 
-- Las contraseñas se almacenan de forma segura (hash + salt).
-- La sesión se mantiene activa hasta que el usuario cierre sesión manualmente.
-- No existe actualmente un flujo de recuperación de contraseña (por implementar).
+- Passwords are stored securely (hash + salt).
+- The session remains active until the user logs out manually.
+- There is currently no password recovery flow (to be implemented).
 
 ---
 
-## 4. Resumen Visual del Proceso de Onboarding
+## 4. Onboarding Summary
 
 ```
-Nuevo usuario (Coder)
+New user (Coder)
        │
        ▼
-  1. Registro ──────────────────────────────────────────┐
-     Completar datos personales y de RIWI               │
+  1. Register ──────────────────────────────────────────┐
+     Complete personal and RIWI information              │
        │                                                │
        ▼                                                │
-  2. Vinculación de GitHub (desde Perfil)               │
-     Autorizar a TeamUp en GitHub OAuth                 │ Flujo
-       │                                                │ de
-       ▼                                                │ Onboarding
+  2. Link GitHub (from Profile)                         │
+     Authorize TeamUp in GitHub OAuth                    │
+       │                                                │
+       ▼                                                │
   3. Login                                              │
-     Ingresar con email y contraseña                    │
+     Enter email and password                            │
        │                                                │
        ▼                                                │
-  4. Explorar Eventos ────────────────────────────────── ┘
-     Ver eventos disponibles y participar
+  4. Explore events ────────────────────────────────── ┘
+     View available events and join one
 ```
 
 ---
 
-[← Anterior: Introducción](./introduction.md) | [← Volver al índice](./contents.md)
+[← Previous: Introduction](./introduction.md) | [← Back to index](./contents.md)

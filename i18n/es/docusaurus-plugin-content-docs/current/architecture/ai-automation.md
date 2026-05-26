@@ -2,101 +2,97 @@
 sidebar_position: 2
 ---
 
-# IA y automatización
+# AI & Automation
 
-TeamUp integra dos sistemas con inteligencia artificial para mejorar la experiencia del desarrollador.
+TeamUp integrates two AI-powered systems to enhance the developer experience.
 
 ---
 
-## Automatización del repositorio de GitHub — n8n
+## GitHub Repository Automation — n8n
 
-Cuando se crea o confirma un equipo, TeamUp crea automáticamente un repositorio de GitHub para ellos mediante un **workflow de n8n**.
+When a team is created or confirmed, TeamUp automatically creates a GitHub repository for them using an **n8n workflow**.
 
-### Cómo funciona
-
+### How it works
 ```
-Equipo confirmado en TeamUp
+Team confirmed in TeamUp
         ↓
-El backend dispara un webhook de n8n
+Backend triggers n8n webhook
         ↓
-Se ejecuta el workflow de n8n:
-  1. Crea el repositorio de GitHub bajo la organización del evento
-  2. Invita a los miembros del equipo como colaboradores
-  3. Actualiza la base de datos con la URL del repositorio
+n8n workflow runs:
+  1. Creates GitHub repo under the event's organization
+  2. Invites team members as collaborators
+  3. Updates the database with the repo URL
         ↓
-El equipo ve la URL de su repositorio en la configuración del proyecto
+Team sees their repo URL in the project settings
 ```
 
-### Qué se automatiza
+### What gets automated
 
-- Creación del repositorio bajo la organización de GitHub del evento (`github_org`)
-- Invitación de los miembros del equipo como colaboradores
-- Guardado de la URL del repo en `team_projects.repo_url`
-- Almacenamiento del token de invitación de GitHub para seguimiento
+- Repository created under the event's GitHub organization (`github_org`)
+- Team members invited as collaborators
+- Repo URL saved to `team_projects.repo_url` in the database
+- GitHub invite token stored for tracking
 
-### Integración con n8n
+### n8n Integration
 
-n8n es una herramienta de automatización de workflows (similar a Zapier, pero autoalojada). El backend de TeamUp envía un webhook a n8n, que maneja todas las llamadas a la API de GitHub.
+n8n is a workflow automation tool (similar to Zapier but self-hosted). The TeamUp backend sends a webhook to n8n which handles all GitHub API calls.
 
 :::tip
-Esto significa que los miembros del equipo nunca necesitan crear o configurar repositorios de GitHub manualmente: todo se procesa automáticamente cuando su equipo es confirmado.
+This means team members never need to manually create or configure GitHub repos — it's all handled automatically when their team is confirmed.
 :::
 
 ---
 
-## Búsqueda semántica de proyectos — OpenAI
+## Semantic Project Search — OpenAI
 
-TeamUp usa **embeddings de OpenAI** para habilitar una búsqueda semántica de proyectos. En lugar de coincidencias por palabras clave, los usuarios pueden buscar por significado.
+TeamUp uses **OpenAI embeddings** to power semantic project search. Instead of simple keyword matching, users can search by meaning.
 
-### Cómo funciona
-
+### How it works
 ```
-Proyecto creado/actualizado
+Project created/updated
         ↓
-El backend genera un embedding vía API de OpenAI
-(convierte la descripción del proyecto en un vector)
+Backend generates embedding via OpenAI API
+(converts project description to a vector)
         ↓
-El vector se guarda en la columna `projects.embedding` (pgvector)
+Vector stored in projects.embedding column (pgvector)
         ↓
-El usuario busca "proyecto de machine learning"
+User searches "machine learning project"
         ↓
-La consulta se convierte en embedding
+Search query converted to embedding
         ↓
-pgvector encuentra los embeddings más similares
+pgvector finds most similar project embeddings
         ↓
-Se devuelven los resultados ordenados por similitud semántica
+Results returned sorted by semantic similarity
 ```
 
 ### Endpoint
-
 ```
 GET /api/teams/search?q=your+search+query&limit=3&min_similarity=0.7
 ```
 
-| Parámetro | Tipo | Por defecto | Descripción |
-|-----------|------|-------------|-------------|
-| `q` | string | requerido | Consulta de búsqueda |
-| `limit` | integer | 3 | Máximo de resultados |
-| `min_similarity` | float | 0.7 | Umbral mínimo de similitud (0-1) |
-| `exclude_project` | integer | null | ID del proyecto a excluir |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `q` | string | required | Search query |
+| `limit` | integer | 3 | Max results to return |
+| `min_similarity` | float | 0.7 | Minimum similarity threshold (0-1) |
+| `exclude_project` | integer | null | Project ID to exclude from results |
 
-### Ejemplo
-
+### Example
 ```javascript
-// Buscar proyectos similares
+// Search for similar projects
 const results = await searchSimilarProjects(
-  "web app para gestión de tareas",
-  3,    // top 3 resultados
-  0.7   // al menos 70% similar
+  "web app for task management",
+  3,    // top 3 results
+  0.7   // at least 70% similar
 );
 ```
 
-### Casos de uso
+### Use cases
 
-- Evitar duplicación de proyectos
-- Descubrir trabajos relacionados de otros equipos
-- Análisis de similitud de proyectos para evaluadores
+- Finding similar projects to avoid duplication
+- Discovering related work from other teams
+- Project similarity analysis for evaluators
 
-:::info Base de datos
-La columna `projects.embedding` usa **pgvector**, una extensión de PostgreSQL para búsquedas de similitud vectorial. Esto permite búsquedas de vecinos más cercanos rápidas incluso con miles de embeddings.
+:::info Database
+The `projects.embedding` column uses **pgvector** — a PostgreSQL extension for vector similarity search. This enables fast nearest-neighbor searches across thousands of project embeddings.
 :::

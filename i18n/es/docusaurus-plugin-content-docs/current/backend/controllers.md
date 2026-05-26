@@ -2,12 +2,11 @@
 sidebar_position: 2
 ---
 
-# Controladores
+# Controllers
 
-Cada módulo de TeamUp sigue el patrón **MVC**: rutas → controladores → servicios.
+Each module in TeamUp follows the **MVC pattern** — routes call controllers, controllers call services.
 
-## Estructura
-
+## Structure
 ```
 src/modules/
 ├── auth/
@@ -34,10 +33,9 @@ src/modules/
     └── upload.controller.js
 ```
 
-## Patrón
+## Pattern
 
-Cada controlador sigue esta estructura:
-
+Every controller follows this structure:
 ```javascript
 export const myController = {
   async get(req, res) {
@@ -51,12 +49,11 @@ export const myController = {
 };
 ```
 
-## Formato de respuesta
+## Response Format
 
-Todos los controladores devuelven JSON consistente:
-
+All controllers return consistent JSON:
 ```javascript
-// Éxito
+// Success
 { success: true, data: { ... } }
 
 // Error

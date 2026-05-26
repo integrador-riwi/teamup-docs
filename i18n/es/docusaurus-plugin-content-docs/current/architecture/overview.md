@@ -2,32 +2,31 @@
 sidebar_position: 1
 ---
 
-# Visión general de la arquitectura
+# Architecture Overview
 
-TeamUp sigue una **arquitectura cliente-servidor** con un backend API REST y un frontend SPA hecho en JavaScript vanilla.
+TeamUp follows a **client-server architecture** with a REST API backend and a Vanilla JS SPA frontend.
 
-## Diagrama de alto nivel
-
+## High Level Diagram
 ```
 ┌─────────────────────────────────────────────────┐
-│                   CLIENTE (Vercel)              │
+│                   CLIENT (Vercel)                │
 │                                                  │
-│   SPA en JavaScript vanilla                       │
-│   ├── Router (basado en hash)                    │
-│   ├── Vistas (una clase por página)              │
-│   ├── Componentes (Navbar, Header, Toast)        │
-│   └── Servicios (api.js, socket.js, auth.js)     │
+│   Vanilla JS SPA                                 │
+│   ├── Router (hash-based)                        │
+│   ├── Views (one class per page)                 │
+│   ├── Components (Navbar, Header, Toast)         │
+│   └── Services (api.js, socket.js, auth.js)      │
 └──────────────┬──────────────────────────────────┘
                │  HTTPS REST + WebSocket
 ┌──────────────▼──────────────────────────────────┐
-│                  SERVIDOR (Railway)              │
+│                  SERVER (Railway)                │
 │                                                  │
 │   Express.js API                                 │
-│   ├── Rutas                                      │
-│   ├── Controladores                              │
-│   ├── Servicios                                   │
+│   ├── Routes                                     │
+│   ├── Controllers                                │
+│   ├── Services                                   │
 │   ├── Middleware (auth, rbac)                    │
-│   └── Socket.IO                                   │
+│   └── Socket.IO                                  │
 └──────┬───────────────────────┬───────────────────┘
        │                       │
 ┌──────▼──────┐       ┌────────▼────────┐
@@ -40,17 +39,17 @@ TeamUp sigue una **arquitectura cliente-servidor** con un backend API REST y un 
 └─────────────┘       └─────────────────┘
 ```
 
-## Decisiones de diseño clave
+## Key Design Decisions
 
-### Base de datos doble
-- **PostgreSQL** — datos relacionales (usuarios, equipos, eventos, evaluaciones)
-- **MongoDB** — sesiones de votos y datos de votación QR (alta frecuencia de escritura)
+### Dual Database
+- **PostgreSQL** — relational data (users, teams, events, evaluations)
+- **MongoDB** — vote sessions and QR voting data (flexible, high write volume)
 
-### Enrutamiento SPA basado en hash
-El frontend usa `window.location.hash` para enrutar (por ejemplo, `#/dashboard`). Esto evita la configuración de enrutamiento del lado del servidor en Vercel.
+### Hash-based SPA Routing
+The frontend uses `window.location.hash` for routing (e.g. `#/dashboard`). This avoids server-side routing configuration on Vercel.
 
-### Control de acceso basado en roles (RBAC)
-Cada ruta de la API está protegida por middleware que valida el rol del usuario antes de permitir el acceso.
+### Role-Based Access Control (RBAC)
+Every API route is protected by middleware that checks the user's role before allowing access.
 
-### Tiempo real con Socket.IO
-Los conteos de votos se actualizan en tiempo real con Socket.IO. El backend emite eventos `vote:new` después de registrar cada voto.
+### Real-time with Socket.IO
+Vote counts update in real time using Socket.IO. The backend emits `vote:new` events after each vote is registered.

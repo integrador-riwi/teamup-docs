@@ -4,7 +4,7 @@
 
 Access to TeamUp begins with creating an account. The platform has a **registration page exclusively for coders**, where the information needed to identify the participant within RIWI is collected.
 
-![Registration view image](./screenshots/image.png)
+![Registration view image](./screenshots/register.png)
 
 ### 1.1 Required registration fields
 

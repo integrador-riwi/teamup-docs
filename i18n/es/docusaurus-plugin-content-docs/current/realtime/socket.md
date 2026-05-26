@@ -2,15 +2,15 @@
 sidebar_position: 1
 ---
 
-# Socket.IO en tiempo real
+# Real-time with Socket.IO
 
-TeamUp usa **Socket.IO** para funcionalidades en tiempo real, principalmente actualizaciones de votos en vivo durante las sesiones QR.
+TeamUp uses **Socket.IO** for real-time features, primarily live vote updates during QR voting sessions.
 
-## Conexión
+## Connection
 
-La conexión se inicia automáticamente cuando el usuario está autenticado:
-
+The socket connects automatically when a user is authenticated:
 ```javascript
+// services/socket.js
 import { io } from "socket.io-client";
 
 export function initSocket() {
@@ -27,51 +27,51 @@ export function initSocket() {
 ```
 
 :::warning
-El socket requiere autenticación. Los usuarios anónimos (como la página pública de votación) no pueden conectarse por socket. El dashboard de admins usa **polling** como fallback cada 5 segundos.
+The socket requires authentication. Anonymous users (e.g. public voting page) cannot connect via socket. The admin voting dashboard uses **polling as a fallback** every 5 seconds.
 :::
 
-## Eventos
+## Events
 
-### Cliente → Servidor
+### Client → Server
 
-| Evento | Payload | Descripción |
-|--------|---------|-------------|
-| `join_project` | `projectId` | Se une a la sala del proyecto |
-| `leave_project` | `projectId` | Sale de la sala del proyecto |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `join_project` | `projectId` | Join a project room for live updates |
+| `leave_project` | `projectId` | Leave a project room |
 
-### Servidor → Cliente
+### Server → Client
 
-| Evento | Payload | Descripción |
-|--------|---------|-------------|
-| `vote:new` | `{ qr_vote_id, project_id, vote }` | Se registró un nuevo voto |
-| `invitation:new` | `{ teamName, invitedByName, ... }` | Llega una invitación de equipo |
-| `invitation:accepted` | `{ userName, teamName }` | Invitación aceptada |
-| `invitation:rejected` | `{ userName, teamName }` | Invitación rechazada |
-| `join_request:new` | `{ coderName, teamName }` | Nueva solicitud de ingreso |
-| `join_request:accepted` | `{ teamName }` | Solicitud aceptada |
-| `join_request:rejected` | `{ teamName }` | Solicitud rechazada |
-| `comment:new` | `{ author_name }` | Nuevo comentario en un proyecto |
-| `team:member_removed` | `{ teamName }` | Usuario removido del equipo |
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `vote:new` | `{ qr_vote_id, project_id, vote }` | New vote registered |
+| `invitation:new` | `{ teamName, invitedByName, ... }` | Team invitation received |
+| `invitation:accepted` | `{ userName, teamName }` | Invitation accepted |
+| `invitation:rejected` | `{ userName, teamName }` | Invitation rejected |
+| `join_request:new` | `{ coderName, teamName }` | Join request received |
+| `join_request:accepted` | `{ teamName }` | Join request accepted |
+| `join_request:rejected` | `{ teamName }` | Join request rejected |
+| `comment:new` | `{ author_name }` | New comment on project |
+| `team:member_removed` | `{ teamName }` | Removed from team |
 
-## Suscripción a eventos
-
+## Subscribing to Events
 ```javascript
 import { on, off } from "../services/socket.js";
 
+// Subscribe
 on("vote:new", async (data) => {
   await this.fetchVoteResults();
   this.renderResults();
 });
 
+// Unsubscribe (always do this in destroy())
 destroy() {
   off("vote:new");
 }
 ```
 
-## Fallback con polling
+## Polling Fallback
 
-Como la página pública de votación es anónima, también se consulta cada 5 segundos:
-
+Since the public voting page is anonymous, votes are also polled every 5 seconds:
 ```javascript
 startPolling() {
   this.pollingInterval = setInterval(async () => {

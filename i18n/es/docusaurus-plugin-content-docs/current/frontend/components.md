@@ -2,12 +2,11 @@
 sidebar_position: 3
 ---
 
-# Componentes
+# Components
 
 ## Navbar
 
-El componente `Navbar` renderiza tanto la **barra lateral desktop** como la **barra superior mobile**.
-
+The `Navbar` component renders both the **desktop sidebar** and **mobile top bar**.
 ```javascript
 import Navbar from "../components/navbar/navbar.js";
 
@@ -16,17 +15,15 @@ app.innerHTML = `${navbar.render()} ...`;
 navbar.attachEventHandlers();
 ```
 
-### Métodos
-
-| Método | Descripción |
+### Methods
+| Method | Description |
 |--------|-------------|
-| `render()` | Devuelve el HTML de la barra |
-| `attachEventHandlers()` | Conecta hamburguesa, links, logout y perfil |
-| `setActiveRoute(route)` | Resalta la ruta activa |
-| `closeSidebarMobile()` | Cierra la sidebar en mobile |
+| `render()` | Returns HTML string |
+| `attachEventHandlers()` | Wires up hamburger, nav links, logout, profile |
+| `setActiveRoute(route)` | Highlights the active nav link |
+| `closeSidebarMobile()` | Closes the mobile sidebar |
 
 ## Header / Breadcrumb
-
 ```javascript
 import Header from "../components/header/header-config.js";
 
@@ -35,37 +32,35 @@ app.innerHTML = `${header.render()} ...`;
 header.mountBreadcrumb();
 ```
 
-Los links de breadcrumb se configuran en `header-config.js` por ruta.
+Breadcrumb links are configured in `header-config.js` per route.
 
 ## Toast
-
 ```javascript
 import { toast } from "../components/Toast/index.js";
 
-toast.success("Título", "Mensaje");
-toast.error("Título", "Mensaje");
-toast.info("Título", "Mensaje", { duration: 0, dropdown: { ... } });
+toast.success("Title", "Message");
+toast.error("Title", "Message");
+toast.info("Title", "Message", { duration: 0, dropdown: { ... } });
 toast.remove(toastId);
 ```
 
-## Iconos
+## Icons
 
-Todos los SVG están exportados desde `src/utils/icons.js`:
-
+All SVG icons are exported from `src/utils/icons.js`:
 ```javascript
 import { icons } from "../utils/icons.js";
 
+// Usage in template strings
 `<span class="icon-md">${icons.trophy()}</span>`
 `<span class="icon-lg">${icons.calendar()}</span>`
 ```
 
-### Iconos disponibles
+### Available icons
 `calendar`, `plus`, `globe`, `bulb`, `settings`, `trophy`, `edit`, `check`,
 `upload`, `chat`, `qr`, `logout`, `save`, `ranking`, `add`, `users`,
 `folder`, `code`, `vote`, `checked`, `danger`, `metrics`, `burger`
 
-### Tamaños
-
+### Icon sizes
 ```css
 .icon-sm  /* 16px */
 .icon-md  /* 20px */

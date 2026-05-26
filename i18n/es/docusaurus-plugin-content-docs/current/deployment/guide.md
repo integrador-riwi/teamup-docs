@@ -2,23 +2,24 @@
 sidebar_position: 1
 ---
 
-# Guía de despliegue
+# Deployment Guide
 
-TeamUp se despliega en dos plataformas:
+TeamUp is deployed across two platforms:
 
-| Capa | Plataforma | URL |
-|-------|------------|-----|
+| Layer | Platform | URL |
+|-------|----------|-----|
 | Frontend | Vercel | `https://team-up.crudzaso.com` |
 | Backend | Railway | `https://back-end-production-7f2c.up.railway.app` |
 
+---
+
 ## Backend — Railway
 
-### Variables de entorno
+### Environment Variables
 
-Configura estas variables en el dashboard de Railway:
-
+Set these in your Railway project dashboard:
 ```bash
-# Base de datos
+# Database
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DBNAME
 
 # Auth
@@ -39,70 +40,66 @@ CLOUDINARY_API_SECRET=your_api_secret
 FRONTEND_URL=https://team-up.crudzaso.com
 ```
 
-### Despliegue
+### Deploy
 
-Railway hace deploy automático al hacer push a `main`. Para desplegar manualmente:
-
+Railway auto-deploys on push to `main`. To deploy manually:
 ```bash
 railway up
 ```
 
-### Comando de inicio
-
+### Start Command
 ```bash
 node src/index.js
 ```
 
+---
+
 ## Frontend — Vercel
 
-### Variables de entorno
+### Environment Variables
 
-Configura estas variables en el dashboard de Vercel:
-
+Set these in your Vercel project dashboard:
 ```bash
 VITE_API_URL=https://back-end-production-7f2c.up.railway.app/api
 ```
 
-### Despliegue
+### Deploy
 
-Vercel hace deploy automático al hacer push a `main`. Para desplegar manualmente:
-
+Vercel auto-deploys on push to `main`. To deploy manually:
 ```bash
 vercel --prod
 ```
 
-### Comando de build
-
+### Build Command
 ```bash
 npm run build
 ```
 
-### Directorio de salida
-
+### Output Directory
 ```
 dist
 ```
 
-## Desarrollo local
+---
+
+## Local Development
 
 ### Backend
-
 ```bash
 git clone https://github.com/integrador-riwi/backend
 cd backend
 npm install
-cp .env.example .env   # completa los valores
+cp .env.example .env   # fill in your values
 npm run dev
 ```
 
 ### Frontend
-
 ```bash
 git clone https://github.com/integrador-riwi/frontend
 cd frontend
 npm install
-cp .env.example .env   # completa los valores
+cp .env.example .env   # fill in your values
 npm run dev
 ```
 
-El frontend corre en `http://localhost:5173` y el backend en `http://localhost:3000`.
+The frontend runs on `http://localhost:5173` and the backend on `http://localhost:3000`.

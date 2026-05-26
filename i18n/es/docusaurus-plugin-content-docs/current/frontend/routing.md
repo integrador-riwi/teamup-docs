@@ -2,14 +2,13 @@
 sidebar_position: 1
 ---
 
-# Enrutamiento frontend
+# Frontend Routing
 
-TeamUp usa un **router SPA basado en hash** sin framework.
+TeamUp uses a **hash-based SPA router** — no framework, pure Vanilla JS.
 
-## Cómo funciona
+## How it works
 
-El router vive en `src/index.js` y mapea los hashes a clases de vista:
-
+The router lives in `src/index.js` and maps hash values to view classes:
 ```javascript
 const ROUTE_PERMISSIONS = {
   login:            "PUBLIC",
@@ -29,26 +28,25 @@ const ROUTE_PERMISSIONS = {
 };
 ```
 
-## Navegación
+## Navigation
 
-Para navegar de forma programática:
-
+To navigate programmatically:
 ```javascript
 this.router.navigate("dashboard");
 this.router.navigate("details", { id: eventId, name: eventName });
 ```
 
-## Guardas de ruta
+## Route Guards
 
-- Las rutas `PUBLIC` son accesibles sin autenticación
-- El resto requiere un JWT válido
-- Si el rol no coincide, el usuario se redirige a su ruta principal
-- `login` redirige al home si ya está autenticado
+- **PUBLIC** routes are accessible without authentication
+- All other routes require a valid JWT token
+- If the role doesn't match, the user is redirected to their home route
+- `login` redirects to home if already authenticated
 
-## Ruta principal por rol
+## Home route by role
 
-| Rol | Ruta principal |
-|------|----------------|
+| Role | Home Route |
+|------|-----------|
 | `ADMIN` | `events` |
 | `STAFF` | `dashboard` |
 | `CODER` | `coderEventSelect` |
