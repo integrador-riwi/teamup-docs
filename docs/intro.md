@@ -14,17 +14,6 @@ sidebar_position: 1
 - **Live Voting** — Audience votes via QR code in real time
 - **Finalists & Podium** — Automatically calculates winners combining scores and votes
 
-## Who uses it?
-
-| Role | Description |
-|------|-------------|
-| `ADMIN` | Full platform access, manages events and users |
-| `STAFF` | Can manage events |
-| `TL_DEVELOPMENT` | Evaluates development projects |
-| `TL_SOFT_SKILLS` | Evaluates soft skills |
-| `TL_ENGLISH` | Evaluates English skills |
-| `CODER` | Joins teams and submits projects |
-
 ## Tech Stack
 
 | Layer | Technology |

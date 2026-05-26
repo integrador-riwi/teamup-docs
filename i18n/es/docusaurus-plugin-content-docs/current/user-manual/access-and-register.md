@@ -3,7 +3,7 @@
 ## 1. Registro de Coders
 
 El acceso a TeamUp comienza con la creación de una cuenta. La plataforma cuenta con una **página de registro exclusiva para coders**, donde se recopila la información necesaria para identificar al participante dentro de RIWI.
-![Imagen de la vista del registro](image.png)
+![Imagen de la vista del registro](./screenshots/image.png)
 
 ### 1.1 Datos Requeridos en el Registro
 

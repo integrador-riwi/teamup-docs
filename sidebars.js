@@ -4,6 +4,18 @@ const sidebars = {
     'intro',
     {
       type:  'category',
+      label: 'User Manual',
+      items: [
+        'user-manual/introduction',
+        'user-manual/access-and-register',
+        'user-manual/admin',
+        'user-manual/tech-lead',
+        'user-manual/coder',
+        'user-manual/contents'
+      ],
+    },
+    {
+      type:  'category',
       label: 'Architecture',
       items: ['architecture/overview',
               'architecture/ai-automation',

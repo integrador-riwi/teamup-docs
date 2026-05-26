@@ -4,7 +4,7 @@
 
 Access to TeamUp begins with creating an account. The platform has a **registration page exclusively for coders**, where the information needed to identify the participant within RIWI is collected.
 
-![Registration view image](/screenshots/image.png)
+![Registration view image](./screenshots/image.png)
 
 ### 1.1 Required registration fields
 
@@ -34,23 +34,22 @@ Are the fields valid?
   │            │
   ▼            ▼
 Account     Error messages
-created ✅   for invalid fields ❌
+created    for invalid fields 
   │
   ▼
 Redirect to Login
-(or directly to profile to
- complete GitHub linking)
 ```
 
 ---
 
 ## 2. GitHub Account Linking
 
-After creating the account, the system prompts the coder to **link their GitHub account** from their profile. This step is essential for the automatic integration with team repositories.
+After creating the account,in the profile section, the user must link their GitHub account. This step is essential for the automatic integration with team repositories.
 
+![Github Linking](./screenshots/gitHubLinking.png)
 ### 2.1 Why linking GitHub is necessary
 
-When a coder joins a team for an event, TeamUp adds them automatically as a **collaborator** on the team's GitHub repository. To do that, the platform needs to know the coder's GitHub username.
+When a coder joins a team for an event, TeamUp adds them automatically as a **collaborator** on the team's GitHub repository. To do that, the platform needs to know the coder's GitHub username and has permission to add them as a collaborator. 
 
 ### 2.2 Linking flow
 
@@ -73,7 +72,7 @@ Is authorization granted?
  YES         NO
   │            │
   ▼            ▼
-GitHub linked ✅   Linking canceled
+GitHub linked    Linking canceled
                     (can try again later)
 ```
 
@@ -81,16 +80,18 @@ GitHub linked ✅   Linking canceled
 
 | State | Visual indicator | Impact |
 |--------|------------------|--------|
-| **Linked** | ✅ GitHub username visible in profile | Can join teams and be added as collaborator |
-| **Not linked** | ⚠️ Warning in profile | Can join events, but will not be added to the repository automatically |
+| **Linked** | GitHub username visible in profile | Can join teams and be added as collaborator |
+| **Not linked** | "Connect with GitHub" button is visible in profile | Can not join teams or create teams |
 
-> ⚠️ **Important:** It is recommended to link GitHub **before joining an event** so the coder can access the team repository immediately.
+>  **Important:** It is very important to link GitHub **before joining an event** so the coder can access the team repository immediately.
 
 ---
 
 ## 3. Login
 
 Login is the common entry point for **all roles** on the platform.
+
+![Login Screen](./screenshots/login.png)
 
 ### 3.1 Required fields
 

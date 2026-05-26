@@ -2,9 +2,9 @@
 
 ## 1. What is TeamUp?
 
-**TeamUp** is a web platform designed for RIWI that centralizes the management of competitive and collaborative programming events. It lets administrators create events with specific rules, coders form teams and submit projects, and Tech Leads evaluate work across multiple dimensions (technical, soft skills, and English).
+**TeamUp** is a web platform designed for RIWI that centralizes the management of competitive and collaborative programming events. It allows administrators to create events with specific rules, coders to form teams and submit projects, and Tech Leads to evaluate work across multiple dimensions (technical, soft skills, and English).
 
-The platform is integrated with **GitHub Organizations**, which automates repository creation and collaborator management when a team is formed.
+The platform is integrated directly with **GitHub Organizations**, which automates repository creation and collaborator management when a team is formed.
 
 ---
 
@@ -14,13 +14,13 @@ The platform is integrated with **GitHub Organizations**, which automates reposi
 ┌─────────────────────────────────────────────────────┐
 │                      TeamUp                         │
 │                                                     │
-│   ┌──────────┐   ┌──────────┐   ┌──────────────┐   │
-│   │  ADMIN   │   │  CODER   │   │  TECH LEADS  │   │
-│   │          │   │          │   │  (TL_DEV /   │   │
-│   │ Events  │   │ Teams    │   │  TL_SOFT /   │   │
-│   │ Rubrics  │   │ Deliver- │   │  TL_ENG)     │   │
-│   │ Config.  │   │ ables    │   │  Evaluation  │   │
-│   └────┬─────┘   └────┬─────┘   └──────┬───────┘   │
+│   ┌──────────┐   ┌──────────┐   ┌──────────────┐    │
+│   │  ADMIN   │   │  CODER   │   │  TECH LEADS  │    │
+│   │          │   │          │   │  (TL_DEV /   │    │
+│   │ Events   │   │ Teams    │   │  TL_SOFT /   │    │
+│   │ Rubrics  │   │ Deliver- │   │  TL_ENG)     │    │
+│   │ Config.  │   │ ables    │   │  Evaluation  │    │
+│   └────┬─────┘   └────┬─────┘   └──────┬───────┘    │
 │        │              │                │            │
 │        └──────────────┴────────────────┘            │
 │                       │                             │
@@ -72,16 +72,9 @@ The GitHub organizational account where team repositories are hosted. The admin 
 ## 5. Shared Access Flow (All Roles)
 
 The entry point to the platform is the same for every role:
+![Login Screen](./screenshots/login.png)
 
 ```
-┌─────────────────────────────────────────────────┐
-│              Login Screen                        │
-│                                                 │
-│   📧 Email: [________________]                    │
-│   🔒 Password: [________________]                 │
-│                                                 │
-│              [ Sign In ]                          │
-└─────────────────────────────────────────────────┘
                       │
                       ▼
          Are the credentials valid?
@@ -116,7 +109,7 @@ For this integration to work correctly:
 1. The **admin** must have linked their GitHub account in their profile before creating an event.
 2. The **coder** must have linked their GitHub account in their profile before joining a team.
 
->If a coder has not linked GitHub when joining a team, they will not be added as a collaborator until they complete that step.
+> If a coder has not linked GitHub when joining a team, they will not be added as a collaborator until they complete that step.
 
 ---
 

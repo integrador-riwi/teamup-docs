@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
 :root {
   --ifm-color-primary:         #6b5cff;
   --ifm-color-primary-dark:    #5646e8;
@@ -8,6 +10,23 @@
   --ifm-color-primary-lightest: #b3abff;
   --ifm-code-font-size:        95%;
   --docusaurus-highlighted-code-line-bg: rgba(107, 92, 255, 0.1);
+
+  /* TeamUp Palette overrides */
+  --ifm-background-color: #f3f4f8; 
+  --ifm-background-surface-color: #ffffff; 
+  --ifm-font-color-base: #181e4b; 
+  --ifm-color-secondary: #181e4b; 
+  --ifm-color-success: #5acca4; 
+  --ifm-color-warning: #e6ca52; 
+  --ifm-color-danger: #fe654f; 
+  --ifm-font-family-base: "Ubuntu", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #181e4b;
+  --ifm-footer-color: #ffffff;
+  --ifm-footer-link-color: #a0aec0;
+  --ifm-footer-title-color: #ffffff;
 }
 
 [data-theme='dark'] {
@@ -18,4 +37,14 @@
   --ifm-color-primary-light:   #a49dff;
   --ifm-color-primary-lighter: #b3abff;
   --ifm-color-primary-lightest: #d1cdff;
+  
+  --ifm-background-color: #121212; 
+  --ifm-background-surface-color: #1e1e1e; 
+  --ifm-font-color-base: #ffffff; 
+  
+  --ifm-navbar-background-color: #1e1e1e;
+  --ifm-footer-background-color: #121212;
+  --ifm-footer-color: #e4e1e1;
+  --ifm-footer-link-color: #bfc1d7;
+  --ifm-footer-title-color: #ffffff;
 }
