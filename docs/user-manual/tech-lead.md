@@ -1,41 +1,41 @@
-# 04 — Rol Tech Lead (TL)
+# 04 — Tech Lead Role (TL)
 
-En TeamUp, los **Tech Leads (TL)** son los jurados o evaluadores de los proyectos entregados por los Coders. Existen tres sub-roles de TL, pero todos comparten el mismo flujo funcional en la plataforma, enfocándose en diferentes criterios según su especialidad:
+In TeamUp, **Tech Leads (TL)** are the judges or evaluators of the projects submitted by the Coders. There are three sub-roles of TL, but all share the same functional flow on the platform, focusing on different criteria depending on their specialty:
 
-1. **`TL_DEVELOPMENT`**: Evalúa la arquitectura, el código y la funcionalidad técnica.
-2. **`TL_SOFT_SKILLS`**: Evalúa la presentación, el trabajo en equipo y la comunicación.
-3. **`TL_ENGLISH`**: Evalúa el dominio del idioma inglés durante las sustentaciones.
+1. **`TL_DEVELOPMENT`**: Evaluates architecture, code, and technical functionality.
+2. **`TL_SOFT_SKILLS`**: Evaluates presentation, teamwork, and communication.
+3. **`TL_ENGLISH`**: Evaluates English proficiency during presentations.
 
-## 1. Panel de Evaluación (TL Dashboard)
+## 1. Evaluation Dashboard (TL Dashboard)
 
-Al iniciar sesión, el Tech Lead es redirigido a su panel de evaluación, donde verá una lista de todos los equipos y proyectos asociados al evento activo.
+Upon logging in, the Tech Lead is redirected to their evaluation panel, where they will see a list of all teams and projects associated with the active event.
 
-- **Proyectos Entregados**: Solo pueden evaluar proyectos que ya han sido enviados por los equipos.
-- **Estado de Calificación**: Pueden ver qué equipos ya han calificado y cuáles faltan por evaluar.
+- **Submitted Projects**: They can only evaluate projects that have already been submitted by the teams.
+- **Grading Status**: They can see which teams they have already graded and which are left to evaluate.
 
 ![TL Dashboard](./screenshots/tl_dashboard.png)
 
-## 2. Proceso de Calificación por Rúbricas
+## 2. Rubric Grading Process
 
-La función principal del TL es evaluar el proyecto usando las rúbricas preconfiguradas por el Administrador.
+The TL's main function is to evaluate the project using the rubrics preconfigured by the Administrator.
 
-- **Selección de Criterios**: Se despliega un formulario con los ítems de calificación específicos de su área (Desarrollo, Soft Skills o Inglés).
-- **Asignación de Puntaje**: El TL asigna una nota o selecciona el nivel de cumplimiento del equipo en cada criterio.
-- **Cálculo Automático**: El puntaje otorgado se envía al sistema central (Backend) para actualizar el `Ranking` en tiempo real.
+- **Criteria Selection**: A form is displayed with the specific grading items for their area (Development, Soft Skills, or English).
+- **Score Assignment**: The TL assigns a grade or selects the team's compliance level for each criterion.
+- **Automatic Calculation**: The awarded score is sent to the central system (Backend) to update the `Ranking` in real time.
 
 ![Evaluation](./screenshots/tl_evaluation.png)
 
-## 3. Comentarios y Feedback
+## 3. Comments and Feedback
 
-Junto con la calificación numérica, los Tech Leads pueden dejar **comentarios (`comments`)** específicos para cada equipo. 
-- Este feedback ayuda a los Coders a entender sus fortalezas y áreas de mejora.
-- Los comentarios se asocian directamente al proyecto evaluado.
+Along with the numerical grade, Tech Leads can leave specific **comments (`comments`)** for each team.
+- This feedback helps Coders understand their strengths and areas for improvement.
+- Comments are directly associated with the evaluated project.
 
 ![Comments](./screenshots/comments.png)
 
-## 4. Actualizaciones en Tiempo Real
+## 4. Real-Time Updates
 
-Gracias a la integración con WebSockets, los TLs pueden ver las actualizaciones de los estados de los proyectos de manera dinámica (por ejemplo, si un equipo acaba de enviar su repositorio o si otro TL ya terminó su evaluación).
+Thanks to the integration with WebSockets, TLs can view updates to project statuses dynamically (for example, if a team has just submitted their repository or if another TL has finished their evaluation).
 
 ---
-[← Anterior: Rol Administrador](./admin.md) | [Siguiente: Rol Coder →](./coder.md)
+[← Previous: Admin Role](./admin.md) | [Next: Coder Role →](./coder.md)

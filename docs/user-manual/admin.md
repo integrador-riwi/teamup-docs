@@ -1,47 +1,47 @@
-# 03 — Rol Administrador (ADMIN)
+# 03 — Admin Role (ADMIN)
 
-El rol de **Administrador (`ADMIN`)** tiene el control total sobre la plataforma TeamUp. Es el encargado de orquestar los eventos, configurar las métricas de calificación y monitorear el progreso general del hackathon o evento de programación.
+The **Administrator (`ADMIN`)** role has total control over the TeamUp platform. They are in charge of orchestrating the events, configuring the grading metrics, and monitoring the overall progress of the hackathon or programming event.
 
+## 1. Event Management
 
-## 1. Gestión de Eventos
+The administrator is the only one capable of creating and managing the platform's main events.
+- **Event creation**: Defines the name, description, start and end dates, and general rules.
+- **Event status**: Can change the state of the event (e.g., Active, Finished, Under Evaluation).
 
-El administrador es el único capaz de crear y gestionar los eventos principales de la plataforma.
-- **Creación de eventos**: Define el nombre, la descripción, fecha de inicio y fin, y las reglas generales.
-- **Estado del evento**: Puede cambiar el estado del evento (Ej. Activo, Finalizado, En Evaluación).
+![Event creation](./screenshots/admin_create_event.png)
 
-![Creacion de eventos](./screenshots/admin_create_event.png)
+## 2. Rubric and Evaluation Configuration
 
-## 2. Configuración de Rúbricas y Evaluaciones
+Before Tech Leads can grade, the Admin must configure how the event will be evaluated.
+- Establishes the weights and criteria for the three main areas: **Development (DEV)**, **Soft Skills (SOFT SKILLS)**, and **English (ENGLISH)**.
+- Defines what percentage of the total score will depend on public votes (QR-Votes).
 
-Antes de que los Tech Leads puedan calificar, el Admin debe configurar cómo se evaluará el evento.
-- Establece los pesos y criterios para las tres áreas principales: **Desarrollo (DEV)**, **Habilidades Blandas (SOFT SKILLS)** e **Inglés (ENGLISH)**.
-- Define qué porcentaje del puntaje total dependerá de los votos del público (QR-Votes).
-![Rubrica](./screenshots/admin_create_rubric.png)
+![Rubric](./screenshots/admin_create_rubric.png)
 
-Nuestra plataforma cuenta con dos maneras de realizar la creacion de la rubrica. Se puede hacer directamente desde la plataforma con el rubric builder que va mostrando los pesos, descripciones y ejemplos de cada criterio por area(una rubrica puede tener un area o varias, segun la necesidad del evento), o se puede descargar la plantilla que tenemos estandarizada en un archivo excel, donde se modifican los pesos, descripciones y ejemplos de cada criterio por area y se sube el archivo a la plataforma para que se cree la rubrica automaticamente.
+Our platform offers two ways to create a rubric. It can be done directly from the platform using the rubric builder, which shows the weights, descriptions, and examples for each criterion per area (a rubric can have one or several areas, depending on the event's needs), or you can download the standard template we provide in an Excel file, modify the weights, descriptions, and examples for each criterion per area, and upload the file to the platform to create the rubric automatically.
 
-![Rubrica Opciones](./screenshots/admin_rubric_options.png)
+![Rubric Options](./screenshots/admin_rubric_options.png)
 
-## 3. Monitoreo de Equipos y Participantes
+## 3. Team and Participant Monitoring
 
-El administrador tiene acceso a una vista global de todos los `coders` y los equipos formados.
+The administrator has access to a global view of all `coders` and formed teams.
 ![Team Management](./screenshots/admin_team_management.png)
 
-El admin tambien tiene un dashboard para monitorear el progreso general del evento, incluyendo calificaciones, mejor puntuacion, entregas, etc. Dentro del dashboard tiene la opcion de finalizar el evento y publicar los resultados finales(lo que cerraria la entrega de proyectos y comenzaria a habilitar la votacion publica)
+The admin also has a dashboard to monitor the overall progress of the event, including grades, top scores, submissions, etc. Within the dashboard, there is an option to finalize the event and publish the final results (which closes project submissions and starts enabling public voting).
 ![Admin Dashboard](./screenshots/admin_dashboard.png)
 
-## 4. Live Voting (Votos QR) y Finalistas
+## 4. Live Voting (QR Votes) and Finalists
 
-Durante la etapa final del evento, el Admin controla la votación del público y la generación del ranking.
-- **Generación de QR**: Puede generar o habilitar el código QR para que el público vote por su proyecto favorito.
+During the final stage of the event, the Admin controls public voting and ranking generation.
+- **QR Generation**: Can generate or enable the QR code so the public can vote for their favorite project.
 
 ![Generate QR](./screenshots/admin_generate_qr.png)
-- **Cálculo del Ranking**: El sistema suma automáticamente las calificaciones de los Tech Leads, los 5 proyectos con mayor puntuacion pasarian a ser finalistas y son los que estarian disponibles en la votacion publica.
+- **Ranking Calculation**: The system automatically sums the Tech Leads' grades; the 5 projects with the highest scores become finalists and are made available for public voting.
 ![Finalists](./screenshots/admin_finalists.png)
 
-- **Podio de Finalistas**: El Admin visualiza en tiempo real a los ganadores (Finalistas) y puede dar por concluido el evento.
+- **Event Podium**: The Admin views the winners (Finalists) in real time and can conclude the event.
 
 ![Event Podium](./screenshots/event_podium.png)
 
 ---
-[← Anterior: Registro y Acceso](./access-and-register.md) | [Siguiente: Rol Tech Lead →](./tech-lead.md)
+[← Previous: Registration and Access](./access-and-register.md) | [Next: Tech Lead Role →](./tech-lead.md)

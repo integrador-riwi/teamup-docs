@@ -1,29 +1,28 @@
-# 05 — Rol Coder
+# 05 — Coder Role
 
-El rol de **Coder** es el perfil principal para los participantes de los eventos. Desde su panel, pueden ver los eventos disponibles, unirse a un equipo y  entregar su proyecto final.
+The **Coder** role is the primary profile for event participants. From their dashboard, they can view available events, join a team, and submit their final project.
 
-## 1. Exploración de Eventos
+## 1. Event Exploration
 
-Una vez que el Coder ha iniciado sesión, puede ver la lista de **eventos activos**.
-- Puede acceder a los detalles del evento para conocer las reglas, fechas y requerimientos.
+Once the Coder has logged in, they can see the list of **active events**.
+- They can access event details to learn about the rules, dates, and requirements.
 
-![Eventos activos](./screenshots/coder_landing_events.png)
+![Active events](./screenshots/coder_landing_events.png)
 
+## 2. Team Creation and Management
 
-## 2. Creación y Gestión de Equipos
+The core dynamic of TeamUp revolves around teams.
+- **Create a team**: A Coder can found a team and become its leader.
+- **Join a team**: Can join teams that are looking for members.
+- **Automatic Repository**: Once the team is consolidated, the TeamUp system communicates with GitHub Organizations to **automatically create a repository** and invite all members (Coders) as collaborators instantly.
+![Team management](./screenshots/coder_team_management.png)
 
-La dinámica central de TeamUp gira en torno a los equipos.
-- **Crear un equipo**: Un Coder puede fundar un equipo y convertirse en el líder del mismo.
-- **Unirse a un equipo**: Puede unirse a equipos que estén buscando integrantes.
-- **Repositorio Automático**: En el momento en que se consolida el equipo, el sistema de TeamUp se comunica con GitHub Organizations para **crear un repositorio automático** e invitar a todos los miembros (Coders) como colaboradores del mismo de forma instantánea.
-![Gestión de equipos](./screenshots/coder_team_management.png)
+## 3. Project Development and Submission
 
-## 3. Desarrollo y Entrega de Proyectos
-
-Durante el evento, el equipo trabaja en su repositorio de GitHub. Al finalizar, el Coder encargado debe **entregar el proyecto** a través de la plataforma.
-- **Espacio para los recursos entregables**: Permite adjuntar el enlace del repositorio, URLs de despliegue, y subir archivos o imágenes necesarios.
-- **Confirmación de Envío**: Una vez enviado, cuando el evento llegue a su fecha de cierre, el estado del equipo pasa a "Entregado" y se habilita para que los Tech Leads puedan comenzar su evaluación.
+During the event, the team works on their GitHub repository. Upon completion, the Coder in charge must **submit the project** through the platform.
+- **Space for deliverable resources**: Allows attaching the repository link, deployment URLs, and uploading necessary files or images.
+- **Submission Confirmation**: Once submitted, when the event reaches its closing date, the team's status changes to "Submitted" and enables the Tech Leads to start their evaluation.
 ![Coder project](./screenshots/coder_project_view.png)
 
 ---
-[← Anterior: Rol Tech Lead](./tech-lead.md) | [← Volver al índice](./contents.md)
+[← Previous: Tech Lead Role](./tech-lead.md) | [← Back to index](./contents.md)
